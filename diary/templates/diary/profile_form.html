@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Profile</title>
+</head>
+<body>
+	<form action="/register" method="post">
+	{% csrf_token %}
+		<label>Date of Birth:</label>
+		<input type="date" name="birthdate">
+		<label>Height:</label>
+		<input type="number" min="50" max="300" step="5" name="height">cm
+		<label>Weight:</label>
+		<input type="number" min="30" max="235" name="weight">kg
+		<label>Diet:</label>
+		<select name="diet">
+		  <option value="vegan">Vegan</option>
+		  <option value="paleo">Paleo</option>
+		  <option value="vegetarian">Vegetarian</option>
+		  <option value="ketogenic">Ketogenic</option>
+		  <option value="anything">Anything</option>
+		</select>
+		<label>Gender:</label>
+		<select name="gender">
+		  <option value="female">Female</option>
+		  <option value="other">Other</option>
+		</select>
+		<label>Goal:</label>
+		<select name="goal">
+		  <option value="lose_weight">Lose Weight</option>
+		  <option value="maintain_health">Maintain Health</option>
+		  <option value="gain_weight">Gain Weight</option>
+		</select>
+		<label>Activity Level:</label>
+		<select name="activity_level">
+		  <option value="sedentary">Sedentary</option>
+		  <option value="lightly_active">Lightly Active</option>
+		  <option value="moderately_active">Moderately Active</option>
+		  <option value="very_active">Very Active</option>
+		</select>
+		<input type="submit" value="Register">
+	</form>
+</body>
+</html>
