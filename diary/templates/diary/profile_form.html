@@ -2,16 +2,20 @@
 <html>
 <head>
 	<title>User Profile</title>
+	<!-- Compiled and minified CSS -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 </head>
 <body>
-	<form action="/register" method="post">
+	<form action="/add_profile" method="post">
 	{% csrf_token %}
 		<label>Date of Birth:</label>
 		<input type="date" name="birthdate">
-		<label>Height:</label>
-		<input type="number" min="50" max="300" step="5" name="height">cm
-		<label>Weight:</label>
-		<input type="number" min="30" max="235" name="weight">kg
+		<label>Height(cm):</label>
+		<input type="number" min="50" max="300" name="height">
+		<label>Weight(kg):</label>
+		<input type="number" min="30" max="235" name="weight">
+		<label>Calories Per Day:</label>
+		<input type="number" name="calories_per_day">
 		<label>Diet:</label>
 		<select name="diet">
 		  <option value="vegan">Vegan</option>
@@ -38,7 +42,9 @@
 		  <option value="moderately_active">Moderately Active</option>
 		  <option value="very_active">Very Active</option>
 		</select>
-		<input type="submit" value="Register">
+		<input type="submit" value="Submit">
 	</form>
+<!-- Compiled and minified JavaScript -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>    
 </body>
 </html>

@@ -17,5 +17,5 @@ from django.conf.urls import url, include
 
 
 urlpatterns = [
-    url(r'^$', include('diary.urls')),
+    url(r'^', include('diary.urls')),
 ]

@@ -4,6 +4,19 @@ from django.db import models
 import re
 
 # Create your models here.
+class Food(models.Model):
+	name = models.CharField(max_length = 255)
+	meal = models.CharField(max_length = 10)
+	calories = models.IntegerField()
+	carbs = models.IntegerField()
+	protein = models.IntegerField()
+	fat = models.IntegerField()
+	created_at = models.DateTimeField(auto_now_add = True)
+	updated_at = models.DateTimeField(auto_now = True)
+
+	def __str__(self):
+		return	"name:{}, meal:{}, calories:{}, carbs:{}, protein:{}, fat:{}, created_at:{}, updated_at:{}".format(self.name, self.meal, self.calories, self.carbs, self.protein, self.fat, self.created_at, self.updated_at)
+
 class UserManager(models.Manager):
 	def validateUser(self, post_data):
 
@@ -32,15 +45,46 @@ class User(models.Model):
 	username = models.CharField(max_length = 45)
 	email = models.CharField(max_length = 255)
 	password = models.CharField(max_length = 255)
+	food = models.ManyToManyField(Food, related_name = 'user_food')
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
 	objects = UserManager()
 
-class User_profileManager(Models.Manager):
-	pass
+class UserProfileManager(models.Manager):
+	def validateUserProfile(self, post_data):
 
-class User_profile(models.Model):
-	user = models.ForeignKey(User, related_name = 'profile')
+		is_valid = True
+		errors = []
+
+		if len(post_data.get('birthdate')) == 0:
+			is_valid = False
+			errors.append('Please enter your birthdate')
+		if len(post_data.get('height')) == 0:
+			is_valid = False
+			errors.append('Please enter your height')
+		if len(post_data.get('weight')) == 0:
+			is_valid = False
+			errors.append('Please enter your weight')
+		if len(post_data.get('diet')) == 0:
+			is_valid = False
+			errors.append('Please enter your dietary preference')
+		if len(post_data.get('calories_per_day')) == 0:
+			is_valid = False
+			errors.append('Please enter your desired calories per day')
+		if len(post_data.get('gender')) == 0:
+			is_valid = False
+			errors.append('Please choose a gender')
+		if len(post_data.get('goal')) == 0:
+			is_valid = False
+			errors.append('Please enter your goal')
+		if len(post_data.get('activity_level')) == 0:
+			is_valid = False
+			errors.append('Please enter your activity level')
+
+		return (is_valid, errors)
+
+class UserProfile(models.Model):
+	user = models.OneToOneField(User, related_name = 'profile')
 	birthdate = models.DateField()
 	height = models.DecimalField(max_digits=5, decimal_places=2)
 	weight = models.DecimalField(max_digits=5, decimal_places=2)
@@ -48,8 +92,9 @@ class User_profile(models.Model):
 	calories_per_day = models.IntegerField()
 	gender = models.CharField(max_length = 6)
 	goal = models.TextField()
-	activity_level = TextField()
-	objects = User_profileManager()
+	activity_level = models.TextField()
+	objects = UserProfileManager()
+
 
 
 	
