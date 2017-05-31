@@ -147,6 +147,7 @@ def update_profile(request):
 	profile.birthdate = request.POST.get('birthdate')
 	profile.height = request.POST.get('height')
 	profile.weight = request.POST.get('weight')
+	profile.photo = request.POST.get('photo')
 	profile.diet = request.POST.get('diet')
 	profile.calories_per_day = request.POST.get('calories_per_day')
 	profile.gender = request.POST.get('gender')

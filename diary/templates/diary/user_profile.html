@@ -52,6 +52,8 @@
 		      <h4>{{user.username}}'s Profile</h4>
 		      <form action="update_profile" method="post">
 		      	{% csrf_token %}
+		      	<label>Profile Picture:</label>
+		      	<input type="image" name="photo" value="{{user_profile.photo}}">
 				<label>Date of Birth:</label>
 				<input type="date" class="datepicker" value="{{user_profile.birthdate}}" name="birthdate">
 				<p class="range-field">
