@@ -87,7 +87,7 @@ def add_profile(request):
 
 def show_user_profile(request):
 	user = current_user(request)
-	user_profile = UserProfile.objects.get(user = user)
+	user_profile = UserProfile.objects.filter(user = user).first()
 	user_profile.birthdate = user_profile.birthdate.strftime('%Y-%m-%d')
 	today = datetime.datetime.now().strftime('%Y-%m-%d')
 	today_food = Food.objects.filter(created_at__startswith=today)
