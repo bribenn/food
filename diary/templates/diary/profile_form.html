@@ -2,49 +2,73 @@
 <html>
 <head>
 	<title>User Profile</title>
+	{% load staticfiles %}
 	<!-- Compiled and minified CSS -->
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script> 
+  	<script src="{% static 'diary/javascript/profile_form.js' %}"></script>  
 </head>
 <body>
-	<form action="/add_profile" method="post">
-	{% csrf_token %}
-		<label>Date of Birth:</label>
-		<input type="date" name="birthdate">
-		<label>Height(cm):</label>
-		<input type="number" min="50" max="300" name="height">
-		<label>Weight(kg):</label>
-		<input type="number" min="30" max="235" name="weight">
-		<label>Calories Per Day:</label>
-		<input type="number" name="calories_per_day">
-		<label>Diet:</label>
-		<select name="diet">
-		  <option value="vegan">Vegan</option>
-		  <option value="paleo">Paleo</option>
-		  <option value="vegetarian">Vegetarian</option>
-		  <option value="ketogenic">Ketogenic</option>
-		  <option value="anything">Anything</option>
-		</select>
-		<label>Gender:</label>
-		<select name="gender">
-		  <option value="female">Female</option>
-		  <option value="other">Other</option>
-		</select>
-		<label>Goal:</label>
-		<select name="goal">
-		  <option value="lose_weight">Lose Weight</option>
-		  <option value="maintain_health">Maintain Health</option>
-		  <option value="gain_weight">Gain Weight</option>
-		</select>
-		<label>Activity Level:</label>
-		<select name="activity_level">
-		  <option value="sedentary">Sedentary</option>
-		  <option value="lightly_active">Lightly Active</option>
-		  <option value="moderately_active">Moderately Active</option>
-		  <option value="very_active">Very Active</option>
-		</select>
-		<input type="submit" value="Submit">
-	</form>
-<!-- Compiled and minified JavaScript -->
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>    
+	<div class="row">
+		<form class="col s6" action="/add_profile" method="post">
+		{% csrf_token %}
+			<div class="row">
+		        <div class="input-field">
+					<input id="birthdate" type="date" name="birthdate">
+					<label class="active" for="birthdate">Date of Birth:</label>
+				</div>
+				<div class="input-field">
+					<input id="height" type="number" min="50" max="300" name="height">
+					<label class="active" for="height">Height(cm):</label>
+				</div>
+				<div class="input-field">
+					<input id="weight" type="number" min="30" max="235" name="weight">
+					<label class="active" for="weight">Weight(kg):</label>
+				</div>
+				<div class="input-field">
+					<input id="calories_per_day" type="number" name="calories_per_day">
+					<label class="active" for="calories_per_day">Calories Per Day:</label>
+				</div>
+				<div class="input-field">
+					<select name="diet">
+					  <option value="vegan">Vegan</option>
+					  <option value="paleo">Paleo</option>
+					  <option value="vegetarian">Vegetarian</option>
+					  <option value="ketogenic">Ketogenic</option>
+					  <option value="anything">Anything</option>
+					</select>
+				<label>Diet:</label>
+				</div>
+				<div class="input-field">
+					<select name="gender">
+					  <option value="female">Female</option>
+					  <option value="male">Male</option>
+					  <option value="other">Other</option>
+					</select>
+					<label>Gender:</label>
+				</div>
+				<div class="input-field">
+					<select name="goal">
+					  <option value="lose_weight">Lose Weight</option>
+					  <option value="maintain_health">Maintain Health</option>
+					  <option value="gain_weight">Gain Weight</option>
+					</select>
+					<label>Goal:</label>
+				</div>
+				<div class="input-field">
+					<select name="activity_level">
+					  <option value="sedentary">Sedentary</option>
+					  <option value="lightly_active">Lightly Active</option>
+					  <option value="moderately_active">Moderately Active</option>
+					  <option value="very_active">Very Active</option>
+					</select>
+					<label>Activity Level:</label>
+				</div>
+				<input type="submit" value="Submit">
+			</div>
+		</form>
+	</div>
 </body>
 </html>

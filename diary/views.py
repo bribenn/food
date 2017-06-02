@@ -30,6 +30,7 @@ def register(request):
 			password = hashed_pw,
 		)
 
+
 		#add user to session, logging them in
 		request.session['user_id'] = user.id
 		#route to profile form page
@@ -48,7 +49,7 @@ def login(request):
 		return redirect('/user_profile')
 	else: 
 		messages.add_message(request, messages.INFO, 'invalid credentials', extra_tags="login")
-		return redirect('/')
+		
 	return redirect('/')
 
 def logout(request):
@@ -86,37 +87,40 @@ def add_profile(request):
 		return redirect('/user_profile')
 
 def show_user_profile(request):
-	user = current_user(request)
-	user_profile = UserProfile.objects.filter(user = user).first()
-	user_profile.birthdate = user_profile.birthdate.strftime('%Y-%m-%d')
-	today = datetime.datetime.now().strftime('%Y-%m-%d')
-	today_food = Food.objects.filter(created_at__startswith=today)
-	calories_goal = user_profile.calories_per_day
-	today_calories = sum(today_food.values_list('calories', flat=True))
-	protein_goal = int((calories_goal * .3) / 4)
-	today_protein = sum(today_food.values_list('protein', flat=True))
-	carbs_goal = int((calories_goal * .5)/4)
-	today_carbs = sum(today_food.values_list('carbs', flat=True))
-	fat_goal = int((calories_goal * .2)/7) 
-	today_fat = sum(today_food.values_list('fat', flat=True))
-	today_breakfast = today_food.filter(name = "breakfast")
-	today_lunch = today_food.filter(name = "lunch")
-	today_dinner = today_food.filter(name = "dinner")
-	today_snack = today_food.filter(name = "snack")
-	context = {
-	# calories and macros
-		'today': today,
-		'user': user,
-		'user_profile': user_profile,
-		'calories_left': calories_goal - today_calories,
-		'protein_left': protein_goal - today_protein,
-		'carbs_left': carbs_goal - today_carbs,
-		'fat_left': fat_goal - today_fat,
-		'calories_eaten': today_calories,
-	# showing food entered for the day
-		'today_food': today_food
-	}
-	return render(request, 'diary/user_profile.html', context)
+	if 'user_id' in request.session:
+		user = current_user(request)
+		user_profile = UserProfile.objects.filter(user = user).first()
+		user_profile.birthdate = user_profile.birthdate.strftime('%Y-%m-%d')
+		today = datetime.datetime.now().strftime('%Y-%m-%d')
+		today_food = Food.objects.filter(created_at__startswith=today)
+		calories_goal = user_profile.calories_per_day
+		today_calories = sum(today_food.values_list('calories', flat=True))
+		protein_goal = int((calories_goal * .3) / 4)
+		today_protein = sum(today_food.values_list('protein', flat=True))
+		carbs_goal = int((calories_goal * .5)/4)
+		today_carbs = sum(today_food.values_list('carbs', flat=True))
+		fat_goal = int((calories_goal * .2)/7) 
+		today_fat = sum(today_food.values_list('fat', flat=True))
+		today_breakfast = today_food.filter(name = "breakfast")
+		today_lunch = today_food.filter(name = "lunch")
+		today_dinner = today_food.filter(name = "dinner")
+		today_snack = today_food.filter(name = "snack")
+		context = {
+		# calories and macros
+			'today': today,
+			'user': user,
+			'user_profile': user_profile,
+			'calories_left': calories_goal - today_calories,
+			'protein_left': protein_goal - today_protein,
+			'carbs_left': carbs_goal - today_carbs,
+			'fat_left': fat_goal - today_fat,
+			'calories_eaten': today_calories,
+		# showing food entered for the day
+			'today_food': today_food
+		}
+		return render(request, 'diary/user_profile.html', context)
+
+	return redirect('/')
 
 def add_food(request):
 	user = current_user(request)
