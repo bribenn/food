@@ -23,7 +23,8 @@
         <div class="col s12 m7">
           <div class="card">
             <div class="card-image">
-              <img class="activator" src="{% static 'diary/images/bri.jpg' %}">
+<!-- profile image -->
+              <img class="activator" src="{{user_profile.photo}}">
               <span class="card-title">{{user.username}}</span>
               <a class="btn-floating pulse halfway-fab waves-effect waves-light green activator"><i class="material-icons">add</i></a>
             </div>
@@ -36,7 +37,7 @@
 		      <p>desired calories per day: {{user_profile.calories_per_day}}</p>
 		      <p>gender: {{user_profile.gender}}</p>
 		      <p>goal: {{user_profile.goal}}</p>
-		      <p>goal: {{user_profile.activity_level}}</p>
+		      <p>activity level: {{user_profile.activity_level}}</p>
 		    </div>
             <div class="card-action">
               <!-- Modal Trigger -->
@@ -47,66 +48,80 @@
           </div>
       	</div>
       </div>
+<!-- update profile form -->
 		<div id="modal1" class="modal">
 		    <div class="modal-content">
-		      <h4>{{user.username}}'s Profile</h4>
-		      <form action="update_profile" method="post">
-		      	{% csrf_token %}
-		      	<label>Profile Picture:</label>
-		      	<input type="image" name="photo" value="{{user_profile.photo}}">
-				<label>Date of Birth:</label>
-				<input type="date" class="datepicker" value="{{user_profile.birthdate}}" name="birthdate">
-				<p class="range-field">
-					<label>Height(cm):</label>
-					<input type="range" id="test5" value="{{user_profile.height}}" min="50" max="300" name="height">
-			    </p>
-			    <p class="range-field">
-					<label>Weight(kg):</label>
-					<input type="range" id="test5" value="{{user_profile.weight}}" min="30" max="235" name="weight">
-				</p>
-				<p class="range-field">
-					<label>Calories Per Day:</label>
-					<input type="range" id="test5" value="{{user_profile.calories_per_day}}" min="1000" max="3000" name="calories_per_day">
-				</p>
-				<div>
-					<label>Diet:</label>
-					<select value="{{user_profile.diet}}" name="diet">
-					  <option value="vegan">Vegan</option>
-					  <option value="paleo">Paleo</option>
-					  <option value="vegetarian">Vegetarian</option>
-					  <option value="ketogenic">Ketogenic</option>
-					  <option value="anything">Anything</option>
-					</select>
+			    <div class="row">
+			      <h4>{{user.username}}'s Profile</h4>
+			      <form class="col s12" action="update_profile" method="post">
+			      	{% csrf_token %}
+				      	<div class="row">
+					      	<div class="file-field input-field">
+								<div class="btn">
+									<span>Update Profile Photo</span>
+									<input type="file" value="{{user_profile.photo}}" name="photo">
+								</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+						</div>
+			    		<div class="input-field">
+							<input id="birthdate" type="date" class="datepicker" value="{{user_profile.birthdate}}" name="birthdate">
+							<label class="active" for="birthdate">Date of Birth:</label>
+						</div>
+						<p class="range-field">
+							<label>Height(cm):</label>
+							<input type="range" value="{{user_profile.height}}" min="50" max="300" name="height">
+					    </p>
+					    <p class="range-field">
+							<label>Weight(kg):</label>
+							<input type="range" value="{{user_profile.weight}}" min="30" max="235" name="weight">
+						</p>
+						<p class="range-field">
+							<label>Calories Per Day:</label>
+							<input type="range" value="{{user_profile.calories_per_day}}" min="1000" max="3000" name="calories_per_day">
+						</p>
+						<div>
+							<label>Diet:</label>
+							<select value="{{user_profile.diet}}" name="diet">
+							  <option value="vegan">Vegan</option>
+							  <option value="paleo">Paleo</option>
+							  <option value="vegetarian">Vegetarian</option>
+							  <option value="ketogenic">Ketogenic</option>
+							  <option value="anything">Anything</option>
+							</select>
+						</div>
+						<div>
+							<label>Gender:</label>
+							<select value="{{user_profile.gender}}" name="gender">
+							  <option value="female">Female</option>
+							  <option value="male">Male</option>
+							  <option value="other">Other</option>
+							</select>
+						</div>
+						<div>
+							<label>Goal:</label>
+							<select value="{{user_profile.goal}}" name="goal">
+							  <option value="lose_weight">Lose Weight</option>
+							  <option value="maintain_health">Maintain Health</option>
+							  <option value="gain_weight">Gain Weight</option>
+							</select>
+						</div>
+						<div>
+							<label>Activity Level:</label>
+							<select value="{{user_profile.activity_level}}" name="activity_level">
+							  <option value="sedentary">Sedentary</option>
+							  <option value="lightly_active">Lightly Active</option>
+							  <option value="moderately_active">Moderately Active</option>
+							  <option value="very_active">Very Active</option>
+							</select>
+						</div>
+						<div class="modal-footer">
+				      		<input type="submit" value="Update" class="modal-action modal-close waves-effect waves-green btn-flat">
+				      	</div> 
+				    </div>
+			    </form>
 				</div>
-				<div>
-					<label>Gender:</label>
-					<select value="{{user_profile.gender}}" name="gender">
-					  <option value="female">Female</option>
-					  <option value="male">Male</option>
-					  <option value="other">Other</option>
-					</select>
-				</div>
-				<div>
-					<label>Goal:</label>
-					<select value="{{user_profile.goal}}" name="goal">
-					  <option value="lose_weight">Lose Weight</option>
-					  <option value="maintain_health">Maintain Health</option>
-					  <option value="gain_weight">Gain Weight</option>
-					</select>
-				</div>
-				<div>
-					<label>Activity Level:</label>
-					<select value="{{user_profile.activity_level}}" name="activity_level">
-					  <option value="sedentary">Sedentary</option>
-					  <option value="lightly_active">Lightly Active</option>
-					  <option value="moderately_active">Moderately Active</option>
-					  <option value="very_active">Very Active</option>
-					</select>
-				</div>
-				<div class="modal-footer">
-		      		<input type="submit" value="Update" class="modal-action modal-close waves-effect waves-green btn-flat">
-		      	</div> 
-		    </form>
 			</div>
 		</div>
 		<ul class="collapsible" data-collapsible="accordion">

@@ -66,7 +66,9 @@ div.col.s12.m5 {
 .card-panel {
 	height: 500px;
 }
-
+#modal1 {
+	max-height: 85%;
+}
 
 /*.day_changer {
 	display: inline-block;
