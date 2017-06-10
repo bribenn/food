@@ -147,11 +147,12 @@ def update_profile(request):
 	user = current_user(request)
 
 	profile = UserProfile.objects.get(user = user)
+	print request.FILES['photo']
 			
 	profile.birthdate = request.POST.get('birthdate')
 	profile.height = request.POST.get('height')
 	profile.weight = request.POST.get('weight')
-	profile.photo = request.POST.get('photo')
+	profile.photo = request.FILES['photo']
 	profile.diet = request.POST.get('diet')
 	profile.calories_per_day = request.POST.get('calories_per_day')
 	profile.gender = request.POST.get('gender')
