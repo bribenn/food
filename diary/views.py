@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 import datetime, bcrypt
 from .models import *
@@ -142,13 +141,9 @@ def diary(request):
 	pass
 
 def update_profile(request):
-	fs = FileSystemStorage()
 	user = current_user(request)
 	profile = UserProfile.objects.get(user = user)
-	photo = request.FILES['photo']
 
-
-			
 	profile.birthdate = request.POST.get('birthdate')
 	profile.height = request.POST.get('height')
 	profile.weight = request.POST.get('weight')
