@@ -48,8 +48,7 @@ def login(request):
 		return redirect('/user_profile')
 	else: 
 		messages.add_message(request, messages.INFO, 'invalid credentials', extra_tags="login")
-		
-	return redirect('/')
+		return redirect('/')
 
 def logout(request):
 	request.session.clear()
