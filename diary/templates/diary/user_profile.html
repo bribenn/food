@@ -5,321 +5,321 @@
 	{% load staticfiles %}
 	<meta name="viewport" content="width=device-width, initial-scale=1">      
 	<!-- Compiled and minified CSS -->
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-  	<!-- jQuery below this line -->
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- Compiled and minified JavaScript -->
-	 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-	<!-- materialize icons -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
-    <!-- My Javascript file -->
-    <script src="{% static 'diary/javascript/user_profile.js' %}"></script>
-	<!-- my css file -->
-	<link rel="stylesheet" href="{% static 'diary/css/user_profile.css' %}"media="screen" title="no title"  charset="utf-8">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+ <!-- jQuery below this line -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+ <!-- materialize icons -->
+ <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+ <!-- My Javascript file -->
+ <script src="{% static 'diary/javascript/user_profile.js' %}"></script>
+ <!-- my css file -->
+ <link rel="stylesheet" href="{% static 'diary/css/user_profile.css' %}"media="screen" title="no title"  charset="utf-8">
 </head>
 <body>
 	<div class="left row s4">
-	  <div class="row">
+     <div class="row">
         <div class="col s12 m7">
           <div class="card">
             <div class="card-image">
-<!-- profile image -->
-              <img class="activator" src="{{user_profile.photo}}">
-              <span class="card-title">{{user.username}}</span>
-              <a class="btn-floating pulse halfway-fab waves-effect waves-light green activator"><i class="material-icons">add</i></a>
+                <!-- profile image -->
+                <img class="activator" src="{% static user_profile.photo %}">
+                <span class="card-title">{{user.username}}</span>
+                <a class="btn-floating pulse halfway-fab waves-effect waves-light green activator"><i class="material-icons">add</i></a>
             </div>
             <div class="card-reveal">
-		      <span class="card-title grey-text text-darken-4">My Profile<i class="material-icons right">close</i></span>
-		      <p>Birthdate: {{user_profile.birthdate}}</p>
-		      <p>height: {{user_profile.height}} cm</p>
-		      <p>weight: {{user_profile.weight}} kg</p>
-		      <p>dietary preference: {{user_profile.diet}}</p>
-		      <p>desired calories per day: {{user_profile.calories_per_day}}</p>
-		      <p>gender: {{user_profile.gender}}</p>
-		      <p>goal: {{user_profile.goal}}</p>
-		      <p>activity level: {{user_profile.activity_level}}</p>
-		    </div>
+                <span class="card-title grey-text text-darken-4">My Profile<i class="material-icons right">close</i></span>
+                <p>Birthdate: {{user_profile.birthdate}}</p>
+                <p>height: {{user_profile.height}} cm</p>
+                <p>weight: {{user_profile.weight}} kg</p>
+                <p>dietary preference: {{user_profile.diet}}</p>
+                <p>desired calories per day: {{user_profile.calories_per_day}}</p>
+                <p>gender: {{user_profile.gender}}</p>
+                <p>goal: {{user_profile.goal}}</p>
+                <p>activity level: {{user_profile.activity_level}}</p>
+            </div>
             <div class="card-action">
               <!-- Modal Trigger -->
-        	  <a href="!#" class="modal-trigger" data-target="modal1">Update Profile</a>
+              <a href="!#" class="modal-trigger" data-target="modal1">Update Profile</a>
               <a href="/diary">My Diary</a>
               <a href="/logout">Logout</a>
-            </div>
           </div>
-      	</div>
       </div>
+  </div>
+</div>
 <!-- update profile form -->
-		<div id="modal1" class="modal">
-		    <div class="modal-content">
-			    <div class="row">
-			      <h4>{{user.username}}'s Profile</h4>
-			      <form class="col s12" action="update_profile" method="post">
-			      	{% csrf_token %}
-				      	<div class="row">
-					      	<div class="file-field input-field">
-								<div class="btn">
-									<span>Update Profile Photo</span>
-									<input type="file" value="{{user_profile.photo}}" name="photo">
-								</div>
-							<div class="file-path-wrapper">
-								<input class="file-path validate" type="text">
-							</div>
-						</div>
-			    		<div class="input-field">
-							<input id="birthdate" type="date" class="datepicker" value="{{user_profile.birthdate}}" name="birthdate">
-							<label class="active" for="birthdate">Date of Birth:</label>
-						</div>
-						<p class="range-field">
-							<label>Height(cm):</label>
-							<input type="range" value="{{user_profile.height}}" min="50" max="300" name="height">
-					    </p>
-					    <p class="range-field">
-							<label>Weight(kg):</label>
-							<input type="range" value="{{user_profile.weight}}" min="30" max="235" name="weight">
-						</p>
-						<p class="range-field">
-							<label>Calories Per Day:</label>
-							<input type="range" value="{{user_profile.calories_per_day}}" min="1000" max="3000" name="calories_per_day">
-						</p>
-						<div>
-							<label>Diet:</label>
-							<select value="{{user_profile.diet}}" name="diet">
-							  <option value="vegan">Vegan</option>
-							  <option value="paleo">Paleo</option>
-							  <option value="vegetarian">Vegetarian</option>
-							  <option value="ketogenic">Ketogenic</option>
-							  <option value="anything">Anything</option>
-							</select>
-						</div>
-						<div>
-							<label>Gender:</label>
-							<select value="{{user_profile.gender}}" name="gender">
-							  <option value="female">Female</option>
-							  <option value="male">Male</option>
-							  <option value="other">Other</option>
-							</select>
-						</div>
-						<div>
-							<label>Goal:</label>
-							<select value="{{user_profile.goal}}" name="goal">
-							  <option value="lose_weight">Lose Weight</option>
-							  <option value="maintain_health">Maintain Health</option>
-							  <option value="gain_weight">Gain Weight</option>
-							</select>
-						</div>
-						<div>
-							<label>Activity Level:</label>
-							<select value="{{user_profile.activity_level}}" name="activity_level">
-							  <option value="sedentary">Sedentary</option>
-							  <option value="lightly_active">Lightly Active</option>
-							  <option value="moderately_active">Moderately Active</option>
-							  <option value="very_active">Very Active</option>
-							</select>
-						</div>
-						<div class="modal-footer">
-				      		<input type="submit" value="Update" class="modal-action modal-close waves-effect waves-green btn-flat">
-				      	</div> 
-				    </div>
-			    </form>
-				</div>
-			</div>
-		</div>
-		<ul class="collapsible" data-collapsible="accordion">
-			<li>
-	            <div class="collapsible-header"><i class="material-icons">add</i>Breakfast</div>
-	            <div class="collapsible-body">
-	            	<form action="add_food" method="post">
-	            		{% csrf_token %}
-	            		<label>Food:</label>
-						<input type="text" name="name">
-						<input type="hidden" name="meal" value="breakfast">
-						<label>Calories:</label>
-						<input type="number" name="calories">
-						<label>Carbs:</label>
-						<input type="number" name="carbs">
-						<label>Protein:</label>
-						<input type="number" name="protein">
-						<label>Fat:</label>
-						<input type="number" name="fat">
-						<input type="submit" value="add to tracker">
-	            	</form>
-	            </div>
-            </li>
-            <li>
-	            <div class="collapsible-header"><i class="material-icons">add</i>Lunch</div>
-	            <div class="collapsible-body">
-	            	<form action="add_food" method="post">
-	            		{% csrf_token %}
-	            		<label>Food:</label>
-						<input type="text" name="name">
-						<input type="hidden" name="meal" value="lunch">
-						<label>Calories:</label>
-						<input type="number" name="calories">
-						<label>Carbs:</label>
-						<input type="number" name="carbs">
-						<label>Protein:</label>
-						<input type="number" name="protein">
-						<label>Fat:</label>
-						<input type="number" name="fat">
-						<input type="submit" value="add to tracker">
-	            	</form>
-	            </div>
-            </li>
-            <li>
-	            <div class="collapsible-header"><i class="material-icons">add</i>Dinner</div>
-	            <div class="collapsible-body">
-	            	<form action="add_food" method="post">
-	            		{% csrf_token %}
-	            		<label>Food:</label>
-						<input type="text" name="name">
-						<input type="hidden" name="meal" value="dinner">
-						<label>Calories:</label>
-						<input type="number" name="calories">
-						<label>Carbs:</label>
-						<input type="number" name="carbs">
-						<label>Protein:</label>
-						<input type="number" name="protein">
-						<label>Fat:</label>
-						<input type="number" name="fat">
-						<input type="submit" value="add to tracker">
-	            	</form>
-	            </div>
-            </li>
-            <li>
-	            <div class="collapsible-header"><i class="material-icons">add</i>Snacks</div>
-	            <div class="collapsible-body">
-	            	<form action="add_food" method="post">
-	            		{% csrf_token %}
-	            		<label>Food:</label>
-						<input type="text" name="name">
-						<input type="hidden" name="meal" value="snack">
-						<label>Calories:</label>
-						<input type="number" name="calories">
-						<label>Carbs:</label>
-						<input type="number" name="carbs">
-						<label>Protein:</label>
-						<input type="number" name="protein">
-						<label>Fat:</label>
-						<input type="number" name="fat">
-						<input type="submit" value="add to tracker">
-	            	</form>
-	            </div>
-            </li>
-            <li>
-	            <div class="collapsible-header"><i class="material-icons">add</i>Symptoms</div>
-	            <div class="collapsible-body">
-	            	<form action="add_symptoms" method="post">
-	            		{% csrf_token %}
-	            		<input type="checkbox" id="checkbox1" name="symptom_positive" value="energetic"><label for="checkbox1">energetic</label><br>
-					  	
-					  	<input type="checkbox" id="checkbox2" name="symptom_positive" value="clear-headed"><label for="checkbox2">clear-headed</label><br>
-					  	
-					  	<input type="checkbox" id="checkbox3" name="symptom_negative" value="lethargic"><label for="checkbox3">lethargic</label><br>
-					  	
-					  	<input type="checkbox" id="checkbox4" name="symptom_negative" value="bloated"><label for="checkbox4">bloated</label><br>
-					  	
-					  	<input type="checkbox" id="checkbox5" name="symptom_negative" value="headache"><label for="checkbox5">headache</label><br>
-					  	
-					  	<input type="checkbox" id="checkbox6" name="symptom_negative" value="cramps"><label for="checkbox6">cramps</label><br>
-					  	
-					  	<input type="checkbox" id="checkbox7" name="symptom_negative" value="gas"><label for="checkbox7">gas</label><br>
-					  	
-					  	<input type="checkbox" id="checkbox8" name="symptom_negative" value="heartburn"><label for="checkbox8">heartburn</label><br>
-						<input type="submit" value="add symptoms">
-	            	</form>
-	            </div>
-            </li>
-		</ul>
-	</div>
-<!-- calorie info -->
-	<div class="right row s8">
-      <div class="col s12 m5">
-        <div class="card-panel teal">
-          <div class="calories">
-			<p>{{calories_eaten}} eaten</p>
-			<p>{{calories_left}} calories left</p>
-			<p>0 burned</p>
-		  </div>
-		  <div class="macros">
-			<div class="protein">
-				<p>Protein</p>
-				<p>{{protein_left}}g left</p>
-			</div>
-			<div class="carbs">
-				<p>Carbs</p>
-				<p>{{carbs_left}}g left</p>
-			</div>
-			<div class="fats">
-				<p>Fats</p>
-				<p>{{fat_left}}g left</p>
-			</div>
-		  </div>
+<div id="modal1" class="modal">
+  <div class="modal-content">
+     <div class="row">
+       <h4>{{user.username}}'s Profile</h4>
+       <form class="col s12" action="update_profile" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+            <div class="file-field input-field">
+                <div class="btn">
+                   <span>Update Profile Photo</span>
+                   <input type="file" name="photo">
+               </div>
+               <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
         </div>
-      </div>
-    <table class="centered responsive-table">
-        <thead class="z-depth-3">
-          <tr>
-	          <th>Breakfast</th>
-          </tr>
-        </thead>
-        {% for food in today_food %}
-	        <tbody>
-	          <tr>
-	          	{% if food.meal == "breakfast" %}
-	            <td><a class="tooltipped" data-position="left" data-delay="50" data-tooltip="Protein: {{food.protein}}g; Carbs: {{food.carbs}}g; Fat: {{food.fat}}g">{{food.name}}</a> ({{food.calories}} calories)</td>
-	            {% endif %}
-	          </tr>
-	        </tbody>
-         {% endfor %}
-      </table>
-      <table class="centered responsive-table">
-        <thead class="z-depth-3">
-          <tr>
-	          <th>Lunch</th>
-          </tr>
-        </thead>
-        {% for food in today_food %}
-	        <tbody>
-	          <tr>
-	            {% if food.meal == "lunch" %}
-	            <td>{{food.name}} ({{food.calories}} calories)</td>
-	            {% endif %}
-	          </tr>
-	        </tbody>
-         {% endfor %}
-      </table>
-      <table class="centered responsive-table">
-        <thead class="z-depth-3">
-          <tr>
-	          <th>Dinner</th>
-          </tr>
-        </thead>
-        {% for food in today_food %}
-	        <tbody>
-	          <tr>
-	            {% if food.meal == "dinner" %}
-	            <td>{{food.name}} ({{food.calories}} calories)</td>
-	            {% endif %}
-	          </tr>
-	        </tbody>
-         {% endfor %}
-      </table>
-      <table class="centered responsive-table">
-        <thead class="z-depth-3">
-          <tr>
-	          <th>Snacks</th>
-          </tr>
-        </thead>
-        {% for food in today_food %}
-	        <tbody>
-	          <tr>
-	            {% if food.meal == "snack" %}
-	            <td>{{food.name}} ({{food.calories}} calories)</td>
-	            {% endif %}
-	          </tr>
-	        </tbody>
-         {% endfor %}
-      </table>
+        <div class="input-field">
+         <input id="birthdate" type="date" class="datepicker" value="{{user_profile.birthdate}}" name="birthdate">
+         <label class="active" for="birthdate">Date of Birth:</label>
+     </div>
+     <p class="range-field">
+         <label>Height(cm):</label>
+         <input type="range" value="{{user_profile.height}}" min="50" max="300" name="height">
+     </p>
+     <p class="range-field">
+         <label>Weight(kg):</label>
+         <input type="range" value="{{user_profile.weight}}" min="30" max="235" name="weight">
+     </p>
+     <p class="range-field">
+         <label>Calories Per Day:</label>
+         <input type="range" value="{{user_profile.calories_per_day}}" min="1000" max="3000" name="calories_per_day">
+     </p>
+     <div>
+         <label>Diet:</label>
+         <select value="{{user_profile.diet}}" name="diet">
+           <option value="vegan">Vegan</option>
+           <option value="paleo">Paleo</option>
+           <option value="vegetarian">Vegetarian</option>
+           <option value="ketogenic">Ketogenic</option>
+           <option value="anything">Anything</option>
+       </select>
+   </div>
+   <div>
+     <label>Gender:</label>
+     <select value="{{user_profile.gender}}" name="gender">
+       <option value="female">Female</option>
+       <option value="male">Male</option>
+       <option value="other">Other</option>
+   </select>
+</div>
+<div>
+ <label>Goal:</label>
+ <select value="{{user_profile.goal}}" name="goal">
+   <option value="lose_weight">Lose Weight</option>
+   <option value="maintain_health">Maintain Health</option>
+   <option value="gain_weight">Gain Weight</option>
+</select>
+</div>
+<div>
+ <label>Activity Level:</label>
+ <select value="{{user_profile.activity_level}}" name="activity_level">
+   <option value="sedentary">Sedentary</option>
+   <option value="lightly_active">Lightly Active</option>
+   <option value="moderately_active">Moderately Active</option>
+   <option value="very_active">Very Active</option>
+</select>
+</div>
+<div class="modal-footer">
+    <input type="submit" value="Update" class="modal-action modal-close waves-effect waves-green btn-flat">
+</div> 
+</div>
+</form>
+</div>
+</div>
+</div>
+<ul class="collapsible" data-collapsible="accordion">
+ <li>
+   <div class="collapsible-header"><i class="material-icons">add</i>Breakfast</div>
+   <div class="collapsible-body">
+      <form action="add_food" method="post">
+         {% csrf_token %}
+         <label>Food:</label>
+         <input type="text" name="name">
+         <input type="hidden" name="meal" value="breakfast">
+         <label>Calories:</label>
+         <input type="number" name="calories">
+         <label>Carbs:</label>
+         <input type="number" name="carbs">
+         <label>Protein:</label>
+         <input type="number" name="protein">
+         <label>Fat:</label>
+         <input type="number" name="fat">
+         <input type="submit" value="add to tracker">
+     </form>
+ </div>
+</li>
+<li>
+   <div class="collapsible-header"><i class="material-icons">add</i>Lunch</div>
+   <div class="collapsible-body">
+      <form action="add_food" method="post">
+         {% csrf_token %}
+         <label>Food:</label>
+         <input type="text" name="name">
+         <input type="hidden" name="meal" value="lunch">
+         <label>Calories:</label>
+         <input type="number" name="calories">
+         <label>Carbs:</label>
+         <input type="number" name="carbs">
+         <label>Protein:</label>
+         <input type="number" name="protein">
+         <label>Fat:</label>
+         <input type="number" name="fat">
+         <input type="submit" value="add to tracker">
+     </form>
+ </div>
+</li>
+<li>
+   <div class="collapsible-header"><i class="material-icons">add</i>Dinner</div>
+   <div class="collapsible-body">
+      <form action="add_food" method="post">
+         {% csrf_token %}
+         <label>Food:</label>
+         <input type="text" name="name">
+         <input type="hidden" name="meal" value="dinner">
+         <label>Calories:</label>
+         <input type="number" name="calories">
+         <label>Carbs:</label>
+         <input type="number" name="carbs">
+         <label>Protein:</label>
+         <input type="number" name="protein">
+         <label>Fat:</label>
+         <input type="number" name="fat">
+         <input type="submit" value="add to tracker">
+     </form>
+ </div>
+</li>
+<li>
+   <div class="collapsible-header"><i class="material-icons">add</i>Snacks</div>
+   <div class="collapsible-body">
+      <form action="add_food" method="post">
+         {% csrf_token %}
+         <label>Food:</label>
+         <input type="text" name="name">
+         <input type="hidden" name="meal" value="snack">
+         <label>Calories:</label>
+         <input type="number" name="calories">
+         <label>Carbs:</label>
+         <input type="number" name="carbs">
+         <label>Protein:</label>
+         <input type="number" name="protein">
+         <label>Fat:</label>
+         <input type="number" name="fat">
+         <input type="submit" value="add to tracker">
+     </form>
+ </div>
+</li>
+<li>
+   <div class="collapsible-header"><i class="material-icons">add</i>Symptoms</div>
+   <div class="collapsible-body">
+      <form action="add_symptoms" method="post">
+         {% csrf_token %}
+         <input type="checkbox" id="checkbox1" name="symptom_positive" value="energetic"><label for="checkbox1">energetic</label><br>
+
+         <input type="checkbox" id="checkbox2" name="symptom_positive" value="clear-headed"><label for="checkbox2">clear-headed</label><br>
+
+         <input type="checkbox" id="checkbox3" name="symptom_negative" value="lethargic"><label for="checkbox3">lethargic</label><br>
+
+         <input type="checkbox" id="checkbox4" name="symptom_negative" value="bloated"><label for="checkbox4">bloated</label><br>
+
+         <input type="checkbox" id="checkbox5" name="symptom_negative" value="headache"><label for="checkbox5">headache</label><br>
+
+         <input type="checkbox" id="checkbox6" name="symptom_negative" value="cramps"><label for="checkbox6">cramps</label><br>
+
+         <input type="checkbox" id="checkbox7" name="symptom_negative" value="gas"><label for="checkbox7">gas</label><br>
+
+         <input type="checkbox" id="checkbox8" name="symptom_negative" value="heartburn"><label for="checkbox8">heartburn</label><br>
+         <input type="submit" value="add symptoms">
+     </form>
+ </div>
+</li>
+</ul>
+</div>
+<!-- calorie info -->
+<div class="right row s8">
+  <div class="col s12 m5">
+    <div class="card-panel teal">
+      <div class="calories">
+         <p>{{calories_eaten}} eaten</p>
+         <p>{{calories_left}} calories left</p>
+         <p>0 burned</p>
+     </div>
+     <div class="macros">
+         <div class="protein">
+            <p>Protein</p>
+            <p>{{protein_left}}g left</p>
+        </div>
+        <div class="carbs">
+            <p>Carbs</p>
+            <p>{{carbs_left}}g left</p>
+        </div>
+        <div class="fats">
+            <p>Fats</p>
+            <p>{{fat_left}}g left</p>
+        </div>
     </div>
+</div>
+</div>
+<table class="centered responsive-table">
+    <thead class="z-depth-3">
+      <tr>
+         <th>Breakfast</th>
+     </tr>
+ </thead>
+ {% for food in today_food %}
+ <tbody>
+     <tr>
+        {% if food.meal == "breakfast" %}
+        <td><a class="tooltipped" data-position="left" data-delay="50" data-tooltip="Protein: {{food.protein}}g; Carbs: {{food.carbs}}g; Fat: {{food.fat}}g">{{food.name}}</a> ({{food.calories}} calories)</td>
+        {% endif %}
+    </tr>
+</tbody>
+{% endfor %}
+</table>
+<table class="centered responsive-table">
+    <thead class="z-depth-3">
+      <tr>
+         <th>Lunch</th>
+     </tr>
+ </thead>
+ {% for food in today_food %}
+ <tbody>
+     <tr>
+       {% if food.meal == "lunch" %}
+       <td>{{food.name}} ({{food.calories}} calories)</td>
+       {% endif %}
+   </tr>
+</tbody>
+{% endfor %}
+</table>
+<table class="centered responsive-table">
+    <thead class="z-depth-3">
+      <tr>
+         <th>Dinner</th>
+     </tr>
+ </thead>
+ {% for food in today_food %}
+ <tbody>
+     <tr>
+       {% if food.meal == "dinner" %}
+       <td>{{food.name}} ({{food.calories}} calories)</td>
+       {% endif %}
+   </tr>
+</tbody>
+{% endfor %}
+</table>
+<table class="centered responsive-table">
+    <thead class="z-depth-3">
+      <tr>
+         <th>Snacks</th>
+     </tr>
+ </thead>
+ {% for food in today_food %}
+ <tbody>
+     <tr>
+       {% if food.meal == "snack" %}
+       <td>{{food.name}} ({{food.calories}} calories)</td>
+       {% endif %}
+   </tr>
+</tbody>
+{% endfor %}
+</table>
+</div>
 </body>
 </html>
