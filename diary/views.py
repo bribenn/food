@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import *
+from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
-import datetime
-import bcrypt
+import datetime, bcrypt
+from .models import *
 
 # Create your views here.
 def current_user(request):
@@ -58,8 +58,6 @@ def logout(request):
 
 def profile_form(request):
 	return render(request, 'diary/profile_form.html')
-
-
 
 def add_profile(request):
 	check = UserProfile.objects.validateUserProfile(request.POST)
@@ -144,10 +142,12 @@ def diary(request):
 	pass
 
 def update_profile(request):
+	fs = FileSystemStorage()
 	user = current_user(request)
-
 	profile = UserProfile.objects.get(user = user)
-	print request.FILES['photo']
+	photo = request.FILES['photo']
+
+
 			
 	profile.birthdate = request.POST.get('birthdate')
 	profile.height = request.POST.get('height')
