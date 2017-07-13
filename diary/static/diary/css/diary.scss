@@ -1,10 +1,9 @@
-// Note: we use Autoprefixer to add vendor prefixes to our CSS -> https://github.com/postcss/autoprefixer
+/*Note: we use Autoprefixer to add vendor prefixes to our CSS -> https://github.com/postcss/autoprefixer*/
 
-/*@import '../partials/variables'; // colors, fonts etc...
+@import 'partials/variables';
+@import 'partials/layout';
+@import 'partials/mixins';
 
-@import '../partials/mixins'; // custom mixins
-
-@import '../partials/layout'; // responsive grid and media queries*/
 
 /* -------------------------------- 
 
