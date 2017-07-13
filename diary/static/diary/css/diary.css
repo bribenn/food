@@ -1,0 +1,81 @@
+/*
+Error: Undefined variable: "$primary-font".
+        on line 26 of diary.scss
+
+21: }
+22: 
+23: body {
+24: 	font: {
+25: 		size: 1.6rem;
+26: 		family: $primary-font; // variables inside partials > _variables.scss
+27: 	}
+28: 	color: $text-color;
+29: 	background-color: $bg-color;
+30: }
+31: 
+
+Backtrace:
+diary.scss:26
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/script/tree/variable.rb:49:in `_perform'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/script/tree/node.rb:58:in `perform'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/stack.rb:79:in `block in with_base'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/stack.rb:115:in `with_frame'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/stack.rb:79:in `with_base'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `map'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:400:in `visit_prop'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/stack.rb:79:in `block in with_base'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/stack.rb:115:in `with_frame'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/stack.rb:79:in `with_base'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:433:in `block (2 levels) in visit_rule'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:433:in `map'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:433:in `block in visit_rule'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:431:in `visit_rule'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/stack.rb:79:in `block in with_base'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/stack.rb:115:in `with_frame'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/stack.rb:79:in `with_base'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `map'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:159:in `visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/engine.rb:381:in `_render_with_sourcemap'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/engine.rb:298:in `render_with_sourcemap'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/exec/sass_scss.rb:391:in `run'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/exec/sass_scss.rb:63:in `process_result'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/exec/base.rb:52:in `parse'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/lib/sass/exec/base.rb:19:in `parse!'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/gems/sass-3.4.24/bin/sass:13:in `<top (required)>'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/bin/sass:23:in `load'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/bin/sass:23:in `<main>'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/bin/ruby_executable_hooks:15:in `eval'
+/Users/brianabennett/.rvm/gems/ruby-2.3.1/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$primary-font\".\A         on line 26 of diary.scss\A \A 21: }\A 22: \A 23: body {\A 24: 	font: {\A 25: 		size: 1.6rem;\A 26: 		family: $primary-font; // variables inside partials > _variables.scss\A 27: 	}\A 28: 	color: $text-color;\A 29: 	background-color: $bg-color;\A 30: }\A 31: "; }
