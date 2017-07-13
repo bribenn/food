@@ -137,7 +137,7 @@ def add_symptoms(request):
 	pass
 
 def diary(request):
-	pass
+	return render(request, 'diary/diary.html')
 
 def update_profile(request):
 	user = current_user(request)
