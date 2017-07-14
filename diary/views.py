@@ -5,9 +5,6 @@ from .models import *
 
 # Create your views here.
 
-# def stock_img(self):
-# 	if self.image and hasattr(self.image, 'url') 
-
 def current_user(request):
 	return User.objects.get(id = request.session['user_id'])
 
@@ -121,6 +118,24 @@ def show_user_profile(request):
 		return render(request, 'diary/user_profile.html', context)
 
 	return redirect('/')
+
+def add_meal(request):
+	user = current_user(request)
+
+	meal = Meal.objects.create(
+		title = request.POST.get('title'),
+		description = request.POST.get('description'),
+		type_of = request.POST.get('type_of'),
+		date = request.POST.get('date')
+		)
+	meal.user_meal.add(user)
+
+	context = {
+			'user': current_user(request),
+			'meals': Meal.objects.filter(user = user),
+		}
+
+	return redirect('/diary', context)
 
 def add_food(request):
 	user = current_user(request)

@@ -17,6 +17,15 @@ class Food(models.Model):
 	def __str__(self):
 		return	"name:{}, meal:{}, calories:{}, carbs:{}, protein:{}, fat:{}, created_at:{}, updated_at:{}".format(self.name, self.meal, self.calories, self.carbs, self.protein, self.fat, self.created_at, self.updated_at)
 
+class Meal(models.Model):
+	title = models.CharField(max_length = 255)
+	description = models.TextField()
+	type_of = models.CharField(max_length = 10)
+	date = models.DateField()
+	created_at = models.DateTimeField(auto_now_add = True)
+	updated_at = models.DateTimeField(auto_now = True)
+
+
 class UserManager(models.Manager):
 	def validateUser(self, post_data):
 
@@ -46,6 +55,7 @@ class User(models.Model):
 	email = models.CharField(max_length = 255)
 	password = models.CharField(max_length = 255)
 	food = models.ManyToManyField(Food, related_name = 'user_food')
+	meal = models.ManyToManyField(Meal, related_name = 'user_meal')
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
 	objects = UserManager()
