@@ -4,6 +4,10 @@ import datetime, bcrypt
 from .models import *
 
 # Create your views here.
+
+# def stock_img(self):
+# 	if self.image and hasattr(self.image, 'url') 
+
 def current_user(request):
 	return User.objects.get(id = request.session['user_id'])
 
@@ -48,8 +52,7 @@ def login(request):
 		return redirect('/user_profile')
 	else: 
 		messages.add_message(request, messages.INFO, 'invalid credentials', extra_tags="login")
-		
-	return redirect('/')
+		return redirect('/')
 
 def logout(request):
 	request.session.clear()
@@ -138,7 +141,7 @@ def add_symptoms(request):
 	pass
 
 def diary(request):
-	pass
+	return render(request, 'diary/diary.html')
 
 def update_profile(request):
 	user = current_user(request)

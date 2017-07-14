@@ -88,7 +88,7 @@ class UserProfile(models.Model):
 	birthdate = models.DateField()
 	height = models.DecimalField(max_digits=5, decimal_places=2)
 	weight = models.DecimalField(max_digits=5, decimal_places=2)
-	photo = models.FileField(upload_to='images')
+	photo = models.FileField(upload_to='diary/images', default='/diary/images/default_user.png')
 	diet = models.CharField(max_length = 45)
 	calories_per_day = models.IntegerField()
 	gender = models.CharField(max_length = 6)
