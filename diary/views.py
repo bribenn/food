@@ -4,6 +4,10 @@ import datetime, bcrypt
 from .models import *
 
 # Create your views here.
+
+# def stock_img(self):
+# 	if self.image and hasattr(self.image, 'url') 
+
 def current_user(request):
 	return User.objects.get(id = request.session['user_id'])
 
