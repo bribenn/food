@@ -26,6 +26,7 @@ I'm going to add a calendar here and it's going to be awesome
 		<input type="text" name="description">
 		<label>Date</label>
 		<input type="date" name="date">
+		<input type="submit" name="add to planner">
 	</form>
 
 	<div class="breakfast">
@@ -33,18 +34,17 @@ I'm going to add a calendar here and it's going to be awesome
 		<thead>
 			<tr>
 				<th>Breakfast</th>
+				<th>{{user}}</th>
 			</tr>
 		</thead>
-		{% for meal in meals %}
 		<tbody>
+		{% for meal in meals %}
 			<tr>
-			{% if meal.type_of === "breakfast" %}
-			<td>{{meal.title}}</td>
-			<td>{{meal.description}}</td>
-		{% endif %}
-		</tr>
-		</tbody>
+				<td>{{meal.title}}</td>
+				<td>{{meal.description}}</td>
+			</tr>
 		{% endfor %}
+		</tbody>
 	</table>
 	</div>
 	<div class="lunch">

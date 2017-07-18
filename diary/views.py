@@ -132,7 +132,7 @@ def add_meal(request):
 
 	context = {
 			'user': current_user(request),
-			'meals': Meal.objects.filter(user = user),
+			'meals': Meal.objects.filter(user_meal = user),
 		}
 
 	return redirect('/diary', context)
