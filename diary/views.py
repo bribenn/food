@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.serializers import serialize
 import datetime, bcrypt
 from .models import *
 
@@ -130,12 +131,8 @@ def add_meal(request):
 		)
 	meal.user_meal.add(user)
 
-	context = {
-			'user': current_user(request),
-			'meals': Meal.objects.filter(user_meal = user),
-		}
 
-	return redirect('/diary', context)
+	return redirect('/diary')
 
 def add_food(request):
 	user = current_user(request)
@@ -156,7 +153,16 @@ def add_symptoms(request):
 	pass
 
 def diary(request):
-	return render(request, 'diary/diary.html')
+	user = current_user(request)
+	meals = user.meal.all()
+	
+	context = {
+			'user': user,
+			'meals': meals,
+			'calendar_meals': serialize('json', meals)
+		}
+	return render(request, 'diary/diary.html', context)
+
 
 def update_profile(request):
 	user = current_user(request)

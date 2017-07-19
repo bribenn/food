@@ -10,7 +10,10 @@
 	<!-- <script src="{% static 'diary/javascript/user_profile.js' %}"></script> -->
 	<!-- my css file -->
 	<!-- <link rel="stylesheet" href="{% static 'diary/css/user_profile.css' %}" -->
-  	
+  	<script type="text/javascript">
+    	var meals = {{ calendar_meals|safe }}
+	</script>
+
 	<title>Diary</title>
 </head>
 <body>
@@ -29,33 +32,66 @@ I'm going to add a calendar here and it's going to be awesome
 		<input type="submit" name="add to planner">
 	</form>
 
-	<div class="breakfast">
-	<table>
-		<thead>
-			<tr>
-				<th>Breakfast</th>
-				<th>{{user}}</th>
-			</tr>
-		</thead>
-		<tbody>
+	<div class="meal_table">
+		{{meals}}
 		{% for meal in meals %}
-			<tr>
-				<td>{{meal.title}}</td>
-				<td>{{meal.description}}</td>
-			</tr>
+		<table>
+			<thead>
+				<tr>
+					<th>Breakfast</th>
+				</tr>
+			</thead>
+				<tbody>
+					<tr>
+						{% if meal.type_of == "breakfast" %}
+							<td>{{meal.title}},{{meal.description}} </td>
+						{% endif %}
+					</tr>
+			</tbody>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th>Lunch</th>
+				</tr>
+			</thead>
+				<tbody>
+					<tr>
+						{% if meal.type_of == "lunch" %}
+							<td>{{meal.title}},{{meal.description}} </td>
+						{% endif %}
+					</tr>
+			</tbody>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th>Dinner</th>
+				</tr>
+			</thead>
+				<tbody>
+					<tr>
+						{% if meal.type_of == "dinner" %}
+							<td>{{meal.title}},{{meal.description}} </td>
+						{% endif %}
+					</tr>
+			</tbody>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th>Snacks</th>
+				</tr>
+			</thead>
+				<tbody>
+					<tr>
+						{% if meal.type_of == "snack" %}
+							<td>{{meal.title}},{{meal.description}} </td>
+						{% endif %}
+					</tr>
+			</tbody>
+		</table>
 		{% endfor %}
-		</tbody>
-	</table>
 	</div>
-	<div class="lunch">
-		Lunch
-	</div>
-	<div class="dinner">
-		Dinner
-	</div>
-	<div class="snacks">
-		Snacks
-	</div>
-
 </body>
 </html>
