@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^add_symptoms', views.add_symptoms),
     url(r'^diary', views.diary),
     url(r'^update_profile', views.update_profile),
+    url(r'^add_meal', views.add_meal)
 ]

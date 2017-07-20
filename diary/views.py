@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.serializers import serialize
 import datetime, bcrypt
 from .models import *
 
 # Create your views here.
-
-# def stock_img(self):
-# 	if self.image and hasattr(self.image, 'url') 
 
 def current_user(request):
 	return User.objects.get(id = request.session['user_id'])
@@ -122,6 +120,20 @@ def show_user_profile(request):
 
 	return redirect('/')
 
+def add_meal(request):
+	user = current_user(request)
+
+	meal = Meal.objects.create(
+		title = request.POST.get('title'),
+		description = request.POST.get('description'),
+		type_of = request.POST.get('type_of'),
+		date = request.POST.get('date')
+		)
+	meal.user_meal.add(user)
+
+
+	return redirect('/diary')
+
 def add_food(request):
 	user = current_user(request)
 
@@ -141,7 +153,16 @@ def add_symptoms(request):
 	pass
 
 def diary(request):
-	return render(request, 'diary/diary.html')
+	user = current_user(request)
+	meals = user.meal.all()
+	
+	context = {
+			'user': user,
+			'meals': meals,
+			'calendar_meals': serialize('json', meals)
+		}
+	return render(request, 'diary/diary.html', context)
+
 
 def update_profile(request):
 	user = current_user(request)
